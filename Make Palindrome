@@ -1,0 +1,16 @@
+# make palindrome.
+#problem statement : minimum number of character to be added to get the palindrome
+def longestcommonsequence(s1 , s2):
+    res =  [[0 for _ in range(len(s2) + 1)] for j in range(len(s1 ) + 1)]
+    for i in range(len(s1)):
+        for j in range(len(s2)):
+            if s1[i] == s2[j]:
+                res[i][j] += res[i-1][j-1] + 1
+            else:
+                res[i][j] = max(res[i-1][j] , res[i][j-1])
+            
+    return max(max(res))
+s = input()
+s_rev = s[::-1]
+k = longestcommonsequence(s , s_rev)
+print(len(s) - k)
