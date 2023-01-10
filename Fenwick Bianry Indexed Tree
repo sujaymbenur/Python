@@ -1,0 +1,22 @@
+#fenwick bianry indexed tree
+def update(x  ,val):
+    while x<=n:
+        bit[x] = bit[x]+val
+        x = x + (x&-x)
+def query(x):
+    sum = 0
+    while x>0:
+        sum = sum + bit[x]
+        x = x - (x&-x)
+    return sum
+n = int(input())
+bit = [0 for _ in range(n+1)]
+for i in range(1 ,n+1):
+    val  = int(input())
+    update(i,val)
+#now my bit array is ready to get quaries
+n = int(input("Enter number of quaries to be asked"))
+for i in range(n):
+    index = int(input("enter a value until which u want sum"))
+    result = query(index)
+    print(f'sum until index {index} is {result}')
