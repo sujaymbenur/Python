@@ -1,4 +1,5 @@
 # rod cutting problem
+#problem : Cut Rod such that the product of the pieces is maximum
 n = int(input())
 result = [0 for _ in range(n+1)]
 # print(result)
