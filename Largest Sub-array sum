@@ -1,0 +1,14 @@
+#19-02-2022 ------- 4
+#largest sub array
+a = [-2,3,4,1,2,1,5,-3]
+tmaxx = 0
+maxx = 0
+for i in range(len(a)):
+    tmaxx = tmaxx + a[i]
+    if tmaxx < 0:
+        tmaxx = 0
+    if maxx < tmaxx:
+        maxx = tmaxx
+print(maxx)
+
+#this method fails when the largest sum array sum is less than 0.
