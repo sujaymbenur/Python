@@ -1,0 +1,16 @@
+#money change problem
+#As we already know, a natural greedy strategy for the change problem does not work
+# correctly for any set of denominations. For
+# example, if the available denominations are
+# 1, 3, and 4, the greedy algorithm will change
+# 6 cents using three coins (4 + 1 + 1) while
+# it can be changed using just two coins (3+3).
+# Your goal now is to apply dynamic programming for solving the Money Change
+# Problem for denominations 1, 3, and 4
+n = int(input())
+dp = [0,1,2,1,1] + [1000 for _ in range(n-3)]
+for a in range(5 ,  n+1):
+    for i in range(1, int(a//2)+1):
+        if dp[a-i]+dp[i] < dp[a]:
+            dp[a] = dp[a-i] + dp[i]
+print(f'minimum number of coins used are {dp[n]}')
