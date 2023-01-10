@@ -1,0 +1,16 @@
+#varient of rod cutting problem - CutRod such that the sum value is maximum - value array is given
+n = 5
+# length of the Rod n
+val = [2,3,7,8,10] 
+#value of each piece of a rod. example: 1unit length of a rod has a value of 2.it is an list : val
+dp  = [0] + [val[i] for i in range(n)]
+str_index = [[i+1] for i in range(n)]
+for i in range(1 , n+1):
+    for j in range(1,i):
+        if dp[i-j] + dp[j] > dp[i]:
+            str_index[i-1].clear()
+            str_index[i-1] = str_index[i-j-1] + str_index[j-1]
+        dp[i] = max(dp[i], dp[i-j] + dp[j]) # if you want product to be maximum then change the  sign operation to the multiplication
+print(dp[n])
+print(f'rod is cut in to pieces of {str_index[n-1]}')
+#so, Cut the rod of length 5 , as 3,1,1 to get max profit of (7+2+2) = 11
