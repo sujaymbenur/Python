@@ -1,0 +1,28 @@
+#assignment problem : find the minimum cost where each column is assigned to any one row - person and job 
+#counts number of bits set
+def  countSetBits(n):
+    count = 0
+    while (n):
+        count += n & 1
+        n >>= 1
+    return count
+
+def isKthBitSet(n, k):
+    if n & (1 << (k-1)):
+#         print('set')
+        return 1 #set
+    else:
+        return 0 #not set
+
+
+n = int(input())
+# Below is the cost 2d array, each column is assigned to any one row
+cost = [list(map(int , input().split())) for _ in range(n)]
+dp = [1000 for _ in range(2**n)]
+dp[0] = 0
+for mask in range(2**n):
+    x = countSetBits(mask)
+    for j in range(n):
+        if isKthBitSet(mask,j+1) == 0:
+            dp[mask | 1 << j] = min(dp[mask | (1<<j)] , (dp[mask] + cost[x][j]))
+print(dp)
