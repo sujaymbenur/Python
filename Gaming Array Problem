@@ -1,0 +1,11 @@
+#this code counts the number of elements greater than the first element , p1 and p2 are two students playing the game
+print('enter a list')
+a = list(map(int, input().split()))
+dp = [0 for _ in range(len(a)+1)]
+f = a[0]
+count = 0
+for i in range(1,len(a)):
+    if a[i] >= f:
+        count = count + 1
+print(count)
+#if count is even p1 wins and if it is odd then p2 wins
